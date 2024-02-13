@@ -1,0 +1,63 @@
+.user-form-container .form-container {
+    height: 300px;
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 0;
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.user-form-container .form-container .form-group {
+    width: 300px;
+    box-sizing: border-box;
+    text-align: left;
+    
+
+}
+
+select {
+    width: 70px;
+    padding: 5px;
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+/* select {
+    width: 70px;
+    padding: 5px;
+    margin: 0 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+label {
+    width: 300px;
+    text-align: justify;
+} */
+
+.culculate-btn-container .culculate-btn {
+    margin-top: 30px;
+    border: 1px solid black;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.culculate-btn-container .culculate-btn:disabled {
+    border: none;
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+  }
