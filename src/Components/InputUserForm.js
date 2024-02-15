@@ -41,7 +41,7 @@ export default function InputUserForm () {
     const [selectedSafetyFactor, setSelectedSafetyFactor] = useState('20');
     const [selectedTorqueUnit, setSelectedTorqueUnit] = useState('kftlb');
     const [selectedTensionUnit, setSelectedTensionUnit] = useState('klb');
-    const [culculatedResult, setCulculatedResult] = useState(null);
+    const [culculatedResult, setCulculatedResult] = useState({});
     const [disabled, setDisabled] = useState(false);
 
     const handlePipeSizeChange = (e) => {
@@ -74,7 +74,14 @@ export default function InputUserForm () {
     
     const handleClickCulculateBtn = () => {
         const result = culculate(selectedPipeSize, selectedWeight, pipeData, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit);
-        setCulculatedResult(result);
+        const chartData = {
+            data: result,
+            selectedPipeSize: selectedPipeSize,
+            selectedWeight: selectedWeight,
+            selectedTorqueUnit: selectedTorqueUnit,
+            selectedTensionUnit: selectedTensionUnit
+        }
+        setCulculatedResult(chartData);
         setDisabled(true);
     }
 
@@ -131,10 +138,7 @@ export default function InputUserForm () {
             <div className="chart-container">
                 <Chart 
                     culculatedResult={culculatedResult}
-                    selectedPipeSize={selectedPipeSize}
-                    selectedWeight={selectedWeight}
-                    selectedTorqueUnit={selectedTorqueUnit}
-                    selectedTensionUnit={selectedTensionUnit}
+                    needRefresh={disabled}
                 /> 
             </div>
             

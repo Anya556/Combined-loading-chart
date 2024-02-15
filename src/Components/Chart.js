@@ -1,23 +1,20 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 
-const Chart = ({
-  culculatedResult,
-  selectedPipeSize,
-  selectedWeight,
-  selectedTorqueUnit,
-  selectedTensionUnit,
-}) => {
-  if (!culculatedResult || !culculatedResult.torqueOutputValue) {
-    return <div>No data available</div>;
+const Chart = ({culculatedResult, needRefresh}) => {
+  console.log('chartDataInfo', culculatedResult)
+  const {data, selectedPipeSize, selectedWeight, selectedTorqueUnit, selectedTensionUnit} = culculatedResult;
+
+  if (!data || !data.torqueOutputValue) {
+    return <div>Calculations NOT up to date</div>;
   }
 
   const {
     torqueOutputValue,
     tensionOutputValue,
     tensionWithSafetyFactorOutputValue,
-  } = culculatedResult;
-
+  } = data;
+ 
   const option = {
     title: {
       subtext: `(${selectedPipeSize})", (${selectedWeight})#, SS-105 \n DP COMBINEDLOAD CHART - NO BLOCK WEIGHT`,
@@ -94,8 +91,11 @@ const Chart = ({
   };
 
   return (
-    <div style={{ width: '800px', height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> 
-      <ReactEcharts option={option} style={{ width: '100%', height: '100%' }} />
+    <div>
+      <div>{needRefresh ? 'Calculations up to date': 'Calculations NOT up to date'}</div>
+        <div style={{ width: '800px', height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> 
+        <ReactEcharts option={option} style={{ width: '100%', height: '100%' }} />
+      </div>
     </div>
   );
 };
