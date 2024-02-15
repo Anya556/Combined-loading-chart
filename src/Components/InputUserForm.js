@@ -76,10 +76,11 @@ export default function InputUserForm () {
         const result = culculate(selectedPipeSize, selectedWeight, pipeData, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit);
         const chartData = {
             data: result,
-            selectedPipeSize: selectedPipeSize,
-            selectedWeight: selectedWeight,
-            selectedTorqueUnit: selectedTorqueUnit,
-            selectedTensionUnit: selectedTensionUnit
+            selectedPipeSize,
+            selectedWeight,
+            selectedSafetyFactor,
+            selectedTorqueUnit,
+            selectedTensionUnit
         }
         setCulculatedResult(chartData);
         setDisabled(true);

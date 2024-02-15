@@ -2,8 +2,8 @@ import React from "react";
 import ReactEcharts from "echarts-for-react";
 
 const Chart = ({culculatedResult, needRefresh}) => {
-  console.log('chartDataInfo', culculatedResult)
-  const {data, selectedPipeSize, selectedWeight, selectedTorqueUnit, selectedTensionUnit} = culculatedResult;
+
+  const {data, selectedPipeSize, selectedWeight, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit} = culculatedResult;
 
   if (!data || !data.torqueOutputValue) {
     return <div>Calculations NOT up to date</div>;
@@ -23,12 +23,21 @@ const Chart = ({culculatedResult, needRefresh}) => {
       subtextStyle: {
         fontSize: 15,
         lineHeight: 20
-
       }
     },
-    // legend: {
-    //   data: ['Series A', 'Series B'] 
-    // },
+    legend: {
+      bottom: 0,
+      padding: [0, 40],
+      lineStyle: {
+        type: "solid",
+        width: 3,
+      },
+      emphasis: {
+        lineStyle: {
+          typr:'solid'
+        }
+      }
+    },
     animation: false,
     xAxis: {
       name: `Torque (${selectedTorqueUnit})`,
@@ -68,7 +77,7 @@ const Chart = ({culculatedResult, needRefresh}) => {
     },
     series: [
       {
-        name: 'tension',
+        name: '100% Premium',
         type: "line",
         showSymbol: false,
         smooth: true,
@@ -78,7 +87,7 @@ const Chart = ({culculatedResult, needRefresh}) => {
         }
       },
       {
-        name: 'tensionWithSafetyFactor',
+        name: `${selectedSafetyFactor}% Premium`,
         type: "line",
         showSymbol: false,
         smooth: true,
