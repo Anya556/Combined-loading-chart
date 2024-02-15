@@ -1,3 +1,16 @@
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-form-container .chart-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
 .user-form-container .form-container {
     height: 300px;
     width: 400px;
@@ -29,19 +42,6 @@ select {
     border-radius: 2px;
 }
 
-/* select {
-    width: 70px;
-    padding: 5px;
-    margin: 0 10px;
-    border: 1px solid black;
-    border-radius: 2px;
-}
-
-label {
-    width: 300px;
-    text-align: justify;
-} */
-
 .culculate-btn-container .culculate-btn {
     margin-top: 30px;
     border: 1px solid black;
@@ -55,7 +55,7 @@ label {
     cursor: pointer;
 }
 
-.culculate-btn-container .culculate-btn:disabled {
+.user-form-container .culculate-btn-container .culculate-btn:disabled {
     border: none;
     background-color: dimgrey;
     color: linen;
