@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './InputUserForm.css';
 import { calculate } from './CalculationUtils';
 import  Chart from './Chart';
+import CustomSelector from "./CustomSelector";
 
 const pipeData = {
     sizes: {
@@ -36,6 +37,27 @@ const pipeData = {
 };
 
 export default function InputUserForm () {
+
+    const getPipeNominalSizeOptions = () => {
+        return Object.keys(pipeData.sizes).map((size) => ({value: size}));
+    }
+
+    const getWeightOptions = () => {
+        return pipeData.weights[selectedPipeSize].map((weight, index) => ({value: weight}));
+    };
+
+    const getSafetyFactorOptionValue = (index) => {
+        return (index +1)*5;
+    };
+
+    const getSafetyFactorOptions = () => {
+        return [...Array(18)].map((item, index) => ({value: getSafetyFactorOptionValue(index)}));
+    };
+
+    const getUnitsOptions = (units) => {
+        return units.map(value => ({ value }));
+    }
+  
     const [selectedPipeSize, setSelectedPipeSize] = useState('4');
     const [selectedWeight, setSelectedWeight] = useState('14.0');
     const [selectedSafetyFactor, setSelectedSafetyFactor] = useState('20');
@@ -89,47 +111,49 @@ export default function InputUserForm () {
         <div className="user-form-container">
             <div className="form-container">
                 <div className="form-group">
-                    <label htmlFor="pipeNominalSize">Pipe Nominal Size</label>
-                    <select id="pipeNominalSize" name="pipeNominalSize" onChange={handlePipeSizeChange} value={selectedPipeSize}>
-                        {Object.keys(pipeData.sizes).map((size) => (
-                            <option key={size} value={size}>{size}</option>
-                        ))}
-                    </select>
-                    <span className="input-unit">inch</span>
+                    <CustomSelector 
+                        selectorIdName="pipeNominalSize" 
+                        labelName="Pipe Nominal Size" 
+                        options={getPipeNominalSizeOptions()}
+                        unit="inch" 
+                        onChange={handlePipeSizeChange} 
+                        value={selectedPipeSize} 
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="nominalWeight">Nominal Weight</label>
-                    <select id="nominalWeight" name="nominalWeight" onChange={handleNominalWeightChange} value={selectedWeight}>
-                        {pipeData.weights[selectedPipeSize].map((weight, index) => (
-                            <option key={index} value={weight}>{weight}</option>
-                        ))}
-                    </select>
-                    <span className="input-unit">lb/ft</span>
+                    <CustomSelector
+                        selectorIdName = "nominalWeight" 
+                        labelName = "Nominal Weight"
+                        options = {getWeightOptions()}
+                        unit = "lb/ft" 
+                        onChange={handleNominalWeightChange}
+                        value={selectedWeight}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="safetyFactor">Safety Factor</label>
-                    <select id="safetyFactor" name="safetyFactor" onChange={handleSafetyFactorChange} value={selectedSafetyFactor}>
-                        {[...Array(18)].map((item, index) => (
-                        <option key={index} value={(index + 1)* 5}>
-                            {(index +1)*5}
-                        </option>
-                        ))}
-                    </select>
-                    <span className="input-unit">%</span>
+                    <CustomSelector selectorIdName="safetyFactor" labelName="Safety Factor" 
+                    options={getSafetyFactorOptions()} 
+                    unit="%" 
+                    onChange={handleSafetyFactorChange} 
+                    value={selectedSafetyFactor} 
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="torqueUnit">Torque unit</label>
-                    <select id="torqueUnit" name="torqueUnit" onChange={handleTorqueUnitChange} value={selectedTorqueUnit}>
-                        <option value="kNm">kNm</option>
-                        <option value="kftlb">kftlb</option>
-                    </select>
+                    <CustomSelector 
+                        selectorIdName="torqueUnit" 
+                        labelName="Torque unit" 
+                        options={getUnitsOptions(['kNm', 'kftlb'])} 
+                        onChange={handleTorqueUnitChange} 
+                        value={selectedTorqueUnit} 
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="tensionUnit">Tension unit</label>
-                    <select id="tensionUnit" name="tensionUnit" onChange={handleTensionUnitChange} value={selectedTensionUnit}>
-                        <option value="mT">mT</option>
-                        <option value="klb">klb</option>
-                    </select>
+                    <CustomSelector
+                        selectorIdName="tensionUnit"
+                        labelName="Tension unit"
+                        options={getUnitsOptions(['mT', 'klb'])}
+                        onChange={handleTensionUnitChange} 
+                        value={selectedTensionUnit}
+                    />
                 </div>
             </div>
             <div className="calculate-btn-container" onClick={handleClickCalculateBtn}>

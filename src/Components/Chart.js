@@ -81,7 +81,6 @@ const Chart = ({calculatedResult, needRefresh}) => {
         name: '100% Premium',
         type: "line",
         showSymbol: false,
-        smooth: true,
         data: torqueOutputValue.map((value, index) => [value, tensionOutputValue[index]]),
         itemStyle: {
           color: '#148fb8' // blue
@@ -91,7 +90,6 @@ const Chart = ({calculatedResult, needRefresh}) => {
         name: `${selectedSafetyFactor}% Premium`,
         type: "line",
         showSymbol: false,
-        smooth: true,
         data: torqueOutputValue.map((value, index) => [value, tensionWithSafetyFactorOutputValue[index]]),
         itemStyle: {
           color: '#e32636' // red
