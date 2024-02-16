@@ -1,9 +1,10 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
+import './Chart.css';
 
-const Chart = ({culculatedResult, needRefresh}) => {
+const Chart = ({calculatedResult, needRefresh}) => {
 
-  const {data, selectedPipeSize, selectedWeight, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit} = culculatedResult;
+  const {data, selectedPipeSize, selectedWeight, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit} = calculatedResult;
 
   if (!data || !data.torqueOutputValue) {
     return <div>Calculations NOT up to date</div>;
@@ -100,9 +101,11 @@ const Chart = ({culculatedResult, needRefresh}) => {
   };
 
   return (
-    <div>
-      <div>{needRefresh ? 'Calculations up to date': 'Calculations NOT up to date'}</div>
-        <div style={{ width: '800px', height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> 
+    <div className="output-form">
+      <div className="up-to-date-container">
+          {needRefresh ? 'Calculations up to date': 'Calculations NOT up to date'}
+      </div>
+      <div className="chart-drawing" >
         <ReactEcharts option={option} style={{ width: '100%', height: '100%' }} />
       </div>
     </div>

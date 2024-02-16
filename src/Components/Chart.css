@@ -1,0 +1,24 @@
+.output-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.output-form .up-to-date-container {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-size: 22px;
+}
+
+.output-form .chart-drawing {
+    width: 800px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

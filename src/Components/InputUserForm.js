@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './InputUserForm.css';
-import { culculate } from './CulculationUtils';
+import { calculate } from './CalculationUtils';
 import  Chart from './Chart';
 
 const pipeData = {
@@ -41,7 +41,7 @@ export default function InputUserForm () {
     const [selectedSafetyFactor, setSelectedSafetyFactor] = useState('20');
     const [selectedTorqueUnit, setSelectedTorqueUnit] = useState('kftlb');
     const [selectedTensionUnit, setSelectedTensionUnit] = useState('klb');
-    const [culculatedResult, setCulculatedResult] = useState({});
+    const [calculatedResult, setCalculatedResult] = useState({});
     const [disabled, setDisabled] = useState(false);
 
     const handlePipeSizeChange = (e) => {
@@ -70,10 +70,9 @@ export default function InputUserForm () {
         setSelectedTensionUnit(e.target.value);
         setDisabled(false);
     }
-
     
-    const handleClickCulculateBtn = () => {
-        const result = culculate(selectedPipeSize, selectedWeight, pipeData, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit);
+    const handleClickCalculateBtn = () => {
+        const result = calculate(selectedPipeSize, selectedWeight, pipeData, selectedSafetyFactor, selectedTorqueUnit, selectedTensionUnit);
         const chartData = {
             data: result,
             selectedPipeSize,
@@ -82,7 +81,7 @@ export default function InputUserForm () {
             selectedTorqueUnit,
             selectedTensionUnit
         }
-        setCulculatedResult(chartData);
+        setCalculatedResult(chartData);
         setDisabled(true);
     }
 
@@ -133,16 +132,15 @@ export default function InputUserForm () {
                     </select>
                 </div>
             </div>
-            <div className="culculate-btn-container" onClick={handleClickCulculateBtn}>
-                <button className="culculate-btn" disabled={disabled} >Culculate</button>
+            <div className="calculate-btn-container" onClick={handleClickCalculateBtn}>
+                <button className="calculate-btn" disabled={disabled}>Calculate</button>
             </div>
             <div className="chart-container">
                 <Chart 
-                    culculatedResult={culculatedResult}
+                    calculatedResult={calculatedResult}
                     needRefresh={disabled}
                 /> 
             </div>
-            
         </div>                
     )
 }

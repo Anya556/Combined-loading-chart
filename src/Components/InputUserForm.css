@@ -1,19 +1,18 @@
 .user-form-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-.user-form-container .chart-container {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
+    justify-content: center;
 }
 
+.user-form-container .chart-container {
+    height: 100vh;
+    font-size: 22px;
+}
 
 .user-form-container .form-container {
     height: 300px;
-    width: 400px;
+    width: 300px;
     margin: auto;
     margin-top: 50px;
     padding: 0;
@@ -30,8 +29,6 @@
     width: 300px;
     box-sizing: border-box;
     text-align: left;
-    
-
 }
 
 select {
@@ -42,8 +39,9 @@ select {
     border-radius: 2px;
 }
 
-.culculate-btn-container .culculate-btn {
+.calculate-btn-container .calculate-btn {
     margin-top: 30px;
+    margin-bottom: 20px;
     border: 1px solid black;
     background-color: black;
     border-radius: 5px;
@@ -55,9 +53,9 @@ select {
     cursor: pointer;
 }
 
-.user-form-container .culculate-btn-container .culculate-btn:disabled {
+.user-form-container .calculate-btn-container .calculate-btn:disabled {
     border: none;
     background-color: dimgrey;
     color: linen;
     opacity: 1;
-  }
+}

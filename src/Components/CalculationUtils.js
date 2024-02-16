@@ -69,7 +69,7 @@ const getTensionWithSafetyFactorApplied = (tensions, safetyFactor) => {// Tsf - 
     return tensions.map(tension => (1 - (toNumberSafetyFactor / 100)) * tension);
 };
 
-export const culculate = (valuePipeSize, valueWeight, pipeData, valueSelectedSafetyFactor, valueTorqueUnit, valueTensionUnit) => {
+export const calculate = (valuePipeSize, valueWeight, pipeData, valueSelectedSafetyFactor, valueTorqueUnit, valueTensionUnit) => {
     const tensions = getTensionMax(valuePipeSize, valueWeight, pipeData, valueTensionUnit, valueTorqueUnit);
     const torque = getTorque(valueTorqueUnit).slice(0, tensions.length);
     const tensionsWithSafetyFactorApplied = getTensionWithSafetyFactorApplied(tensions, valueSelectedSafetyFactor);
