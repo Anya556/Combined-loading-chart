@@ -74,10 +74,6 @@ export const calculate = (valuePipeSize, valueWeight, pipeData, valueSelectedSaf
     const torque = getTorque(valueTorqueUnit).slice(0, tensions.length);
     const tensionsWithSafetyFactorApplied = getTensionWithSafetyFactorApplied(tensions, valueSelectedSafetyFactor);
 
-    console.log('Maximum allowable torque:', torque);
-    console.log('Maximum allowable tensions:', tensions);
-    console.log('tension with safety factor applied:', tensionsWithSafetyFactorApplied);
-
     return {
         torqueOutputValue: torque,
         tensionOutputValue: tensions,
